@@ -79,7 +79,7 @@ var EARLY_ACCESS = 'mailto:support@chaistack.in?subject=Work%20Companion%20early
     else {
       var ro = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); ro.unobserve(en.target); } });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -5% 0px', threshold: 0 });
       reveals.forEach(function (el) { ro.observe(el); });
     }
 

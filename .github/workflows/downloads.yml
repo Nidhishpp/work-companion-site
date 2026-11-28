@@ -1,0 +1,50 @@
+# Keeps the download page pointing at the latest app release.
+# tools/update-downloads.mjs reads the latest release of Nidhishpp/work-companion
+# and rewrites the download buttons, sizes and version; this commits any change
+# to main, which publishes the site. Runs hourly, so files uploaded to a release
+# after it was created (the Windows installers) are picked up too, and on demand:
+#   gh workflow run downloads.yml -R Nidhishpp/work-companion-site
+# The app repo can also trigger it straight after a release with a
+# repository_dispatch event of type "app-release".
+name: Downloads
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [app-release]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: downloads
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Update download links
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/update-downloads.mjs
+      - name: Commit and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then echo "No change"; exit 0; fi
+          version=$(grep -o -m1 '<span data-version>[^<]*' download.html | sed 's/.*>//')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Downloads: link release v${version}"
+          git push
+          # Pushes made with GITHUB_TOKEN may not start a Pages build on their own.
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null || echo "::warning::Could not request a Pages build"

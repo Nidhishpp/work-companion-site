@@ -164,23 +164,36 @@ var EARLY_ACCESS = 'mailto:support@chaistack.in?subject=Work%20Companion%20early
     var bubble = qd.querySelector('.qd-bubble');
     var tag = bubble.querySelector('.tag');
     var msg = bubble.querySelector('.msg');
-    var i = 0, timer = null, onScreen = false;
-    function step() {
-      items.forEach(function (li, k) {
-        li.classList.toggle('is-active', k === i);
-        li.classList.toggle('is-done', k < i);
+    // `current` is the reminder on screen. The chips and the bubble always
+    // show the same one: the bubble fades out, swaps to the new text, and
+    // fades back in, and the chips change only when the new text appears.
+    var current = 0, timer = null, swap = null, onScreen = false;
+    function mark(k) {
+      items.forEach(function (li, n) {
+        li.classList.toggle('is-active', n === k);
+        li.classList.toggle('is-done', n < k);
       });
+    }
+    function show(k) {
+      clearTimeout(swap);
       bubble.classList.add('is-out');
-      setTimeout(function () {
-        tag.textContent = items[i].getAttribute('data-tag');
-        msg.textContent = items[i].getAttribute('data-msg');
+      swap = setTimeout(function () {
+        current = k;
+        tag.textContent = items[k].getAttribute('data-tag');
+        msg.textContent = items[k].getAttribute('data-msg');
+        mark(k);
         bubble.classList.remove('is-out');
       }, 350);
-      i = (i + 1) % items.length;
-      if (i === 0) setTimeout(function () { items.forEach(function (li) { li.classList.remove('is-done'); }); }, 2600);
     }
-    function start() { if (!timer) { step(); timer = setInterval(step, 2800); } }
-    function stop() { clearInterval(timer); timer = null; }
+    function next() { show((current + 1) % items.length); }
+    // Resuming carries on from the reminder on screen rather than restarting.
+    function start() { if (!timer) timer = setInterval(next, 2800); }
+    function stop() {
+      clearInterval(timer); timer = null;
+      // Finish a half-done swap so the chips and bubble never disagree.
+      if (bubble.classList.contains('is-out')) { clearTimeout(swap); bubble.classList.remove('is-out'); }
+    }
+    mark(current);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; if (onScreen && !document.hidden) start(); else stop(); }).observe(qd);
       document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else if (onScreen) start(); });

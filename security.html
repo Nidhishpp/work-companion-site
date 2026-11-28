@@ -41,10 +41,10 @@
       <h2>How the app protects your data</h2>
       <ul>
         <li><strong>No servers:</strong> your data stays on your computer, so there is no central store to breach.</li>
-        <li><strong>Keychain for secrets:</strong> AI keys and sign-in tokens are kept in your operating system's keychain (Windows Credential Manager, macOS Keychain, or your keyring on Linux), never in plaintext files. Pages in the app can save a secret but can't read it back.</li>
+        <li><strong>Keychain for secrets:</strong> AI keys and sign-in tokens are kept in your operating system’s keychain (Windows Credential Manager, macOS Keychain, or your keyring on Linux), never in plaintext files. Pages in the app can save a secret but can’t read it back.</li>
         <li><strong>Safe sign-in:</strong> Google and ChatGPT sign-ins use OAuth with PKCE through your own browser and a loopback redirect on your computer. The app never sees your password.</li>
         <li><strong>Encrypted connections:</strong> every request to Google and online AI providers uses HTTPS (TLS).</li>
-        <li><strong>Locked-down pages:</strong> the app's pages get no direct file, network or OS access. They call the app's own commands, which validate their input. The Windows and macOS build runs its pages under a strict Content Security Policy with no inline scripts, and grants them a minimal set of capabilities.</li>
+        <li><strong>Locked-down pages:</strong> the app’s pages get no direct file, network or OS access. They call the app’s own commands, which validate their input. The Windows and macOS build runs its pages under a strict Content Security Policy with no inline scripts, and grants them a minimal set of capabilities.</li>
         <li><strong>Dependency checks:</strong> dependencies are audited with <code>npm audit</code> and <code>cargo audit</code> after every change.</li>
       </ul>
     </section>
@@ -55,7 +55,7 @@
       <ol>
         <li>Email <a href="mailto:support@chaistack.in?subject=Security">support@chaistack.in</a> with the subject <strong>Security</strong>.</li>
         <li>Include the app version and operating system, the steps to reproduce, what an attacker could do, and any proof of concept.</li>
-        <li>Please don't disclose it publicly until we have released a fix or agreed a date with you.</li>
+        <li>Please don’t disclose it publicly until we have released a fix or agreed a date with you.</li>
       </ol>
       <p>We aim to acknowledge your report within 5 working days and to keep you updated until it is resolved. We are happy to credit you, if you wish.</p>
       <p>Machine-readable contact details are in <a href=".well-known/security.txt">security.txt</a>.</p>
@@ -84,7 +84,7 @@
 
     <section id="safe-harbour">
       <h2>Safe harbour</h2>
-      <p>If you research in good faith, follow this policy, avoid harming others' data and privacy, and give us reasonable time to fix the problem, we will not pursue or support legal action against you for that research.</p>
+      <p>If you research in good faith, follow this policy, avoid harming others’ data and privacy, and give us reasonable time to fix the problem, we will not pursue or support legal action against you for that research.</p>
       <!-- REVIEW: safe harbour wording is a commitment; confirm the owner is comfortable with it. -->
     </section>
   </article>

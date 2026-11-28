@@ -23,7 +23,8 @@
 
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function put(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } }
-  function src(id) { return 'assets/img/chars/' + id + '.svg'; }
+  function src(id) { return 'assets/img/chars/' + id + '.webp'; }
+  function strip(id, kind) { return 'assets/img/chars/' + id + '-' + kind + '.webp'; }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
   function hello(id) { return 'Hi, I’m ' + CHARS[id].name + '! I’ll show you around.'; }
 
@@ -40,18 +41,76 @@
     if (reduce || !el) return;
     el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
   }
-  function swapImg(img, id) {
-    if (!img || img.getAttribute('src') === src(id)) return;
-    if (reduce) { img.src = src(id); return; }
-    img.classList.add('is-poof');
-    setTimeout(function () { img.src = src(id); img.classList.remove('is-poof'); }, 160);
+
+  /* Sprites: a still <img> (the no-JS and reduced-motion view) inside a
+     .sprite wrapper. Once the character's idle strip has loaded, the wrapper
+     plays it as a background (12 frames, CSS steps) and hides the still.
+     States: idle (loop), walk (loop) and wave (once, then idle). Strips are
+     only fetched for characters actually shown. */
+  var loaded = {};
+  function load(url, cb) {
+    if (loaded[url] === true) { if (cb) cb(); return; }
+    if (!loaded[url]) {
+      loaded[url] = [];
+      var im = new Image();
+      im.onload = function () { var q = loaded[url]; loaded[url] = true; q.forEach(function (f) { f(); }); };
+      im.onerror = function () { loaded[url] = false; };
+      im.src = url;
+    }
+    if (cb && loaded[url]) loaded[url].push(cb);
+  }
+  function preload(id) { if (!reduce) { load(strip(id, 'walk')); load(strip(id, 'wave')); } }
+  function sprite(el) {
+    var img = el.querySelector('img');
+    var sp = { el: el, img: img, id: null, state: 'idle' };
+    function apply() {
+      if (!sp.id || reduce) return;
+      var st = sp.state, url = strip(sp.id, st);
+      if (loaded[url] !== true) {
+        var want = sp.id;
+        load(url, function () { if (sp.id === want && sp.state === st) apply(); });
+        if (st === 'idle') return;
+        st = 'idle'; url = strip(sp.id, 'idle');
+        if (loaded[url] !== true) return;
+      }
+      el.style.backgroundImage = 'url("' + url + '")';
+      el.removeAttribute('data-state'); void el.offsetWidth;
+      el.setAttribute('data-state', st);
+      el.classList.add('is-anim');
+    }
+    sp.set = function (id, state) {
+      if (sp.id !== id) {
+        sp.id = id; img.src = src(id);
+        el.classList.remove('is-anim'); el.removeAttribute('data-state'); el.style.backgroundImage = '';
+      }
+      sp.state = state || 'idle';
+      apply();
+    };
+    sp.to = function (state) { sp.state = state; apply(); };
+    el.addEventListener('animationend', function (e) {
+      if (e.target === el && sp.state === 'wave') sp.to('idle');
+    });
+    return sp;
+  }
+  // Change character with a quick poof, optionally landing in a state.
+  function swapImg(sp, id, state) {
+    if (!sp) return;
+    if (sp.id === id) { if (state) sp.to(state); return; }
+    if (reduce || !sp.id) { sp.set(id, state); return; }
+    sp.el.classList.add('is-poof');
+    setTimeout(function () { sp.set(id, state); sp.el.classList.remove('is-poof'); }, 160);
   }
 
   function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
 
   ready(function () {
-    document.querySelectorAll('[data-buddy-img]').forEach(function (img) { img.src = src(buddy); });
-    listeners.push(function (id) { document.querySelectorAll('[data-buddy-img]').forEach(function (img) { swapImg(img, id); }); });
+    document.querySelectorAll('[data-buddy-img]').forEach(function (img) {
+      var sp = sprite(img.closest('[data-sprite]') || img.parentNode);
+      sp.set(buddy);
+      listeners.push(function (id) { swapImg(sp, id); });
+    });
+    listeners.push(preload);
+    window.addEventListener('load', function () { setTimeout(function () { preload(buddy); }, 300); });
     stage();
     gang();
     guide();
@@ -61,7 +120,7 @@
   function stage() {
     var st = document.querySelector('[data-stage]');
     if (!st) return;
-    var btn = st.querySelector('[data-stage-char]'), img = btn.querySelector('img');
+    var btn = st.querySelector('[data-stage-char]'), img = sprite(btn.querySelector('[data-sprite]'));
     var bubble = st.querySelector('[data-stage-bubble]'), text = st.querySelector('[data-stage-text]');
     var join = st.querySelector('[data-stage-join]'), clock = st.querySelector('[data-clock]');
     var pause = st.querySelector('[data-stage-pause]');
@@ -86,14 +145,17 @@
       pause.textContent = paused ? 'Play' : 'Pause';
     }
 
-    img.src = src(buddy);
+    img.set(buddy);
     btn.setAttribute('aria-label', 'Meet the next character. Now showing ' + CHARS[buddy].name);
+    var tapped = false;
     btn.addEventListener('click', function () {
+      tapped = true;
       choose(ORDER[(ORDER.indexOf(buddy) + 1) % ORDER.length]);
+      tapped = false;
       play(btn, 'is-hop');
     });
     listeners.push(function (id) {
-      swapImg(img, id);
+      swapImg(img, id, tapped ? 'wave' : null);
       btn.setAttribute('aria-label', 'Meet the next character. Now showing ' + CHARS[id].name);
     });
     pause.addEventListener('click', function () {
@@ -112,12 +174,13 @@
     var root = document.querySelector('[data-gang]');
     if (!root) return;
     var btns = root.querySelectorAll('[data-char]');
-    var pic = root.querySelector('.gang-pic'), img = root.querySelector('[data-gang-img]');
+    var pic = root.querySelector('.gang-pic'), img = sprite(pic.querySelector('[data-sprite]'));
     var name = root.querySelector('[data-gang-name]'), blurb = root.querySelector('[data-gang-blurb]'), say = root.querySelector('[data-gang-say]');
 
+    var wave = false;
     function show(id, line) {
       btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-char') === id ? 'true' : 'false'); });
-      swapImg(img, id);
+      swapImg(img, id, wave ? 'wave' : null);
       name.textContent = CHARS[id].name;
       blurb.textContent = CHARS[id].blurb;
       say.textContent = line || hello(id);
@@ -126,7 +189,9 @@
       b.addEventListener('click', function () {
         var id = b.getAttribute('data-char');
         put('wc-guide', 'on');
+        wave = true;
         if (id === buddy) show(id, pick(CHARS[id].lines)); else choose(id);
+        wave = false;
         play(pic, 'is-hop');
         play(say, 'is-pop');
       });
@@ -145,19 +210,19 @@
     el.className = 'guide';
     el.innerHTML =
       '<p class="guide-bubble" aria-hidden="true"></p>' +
-      '<button class="guide-char" type="button"><img alt="" width="120" height="120"></button>' +
+      '<button class="guide-char" type="button"><span class="sprite" data-sprite><img alt="" width="256" height="256"></span></button>' +
       '<button class="guide-close" type="button" aria-label="Send the guide away"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
     document.body.appendChild(el);
     document.documentElement.classList.add('has-guide');
 
     var bubble = el.querySelector('.guide-bubble'), charBtn = el.querySelector('.guide-char');
-    var img = charBtn.querySelector('img'), close = el.querySelector('.guide-close');
+    var img = sprite(charBtn.querySelector('[data-sprite]')), close = el.querySelector('.guide-close');
     var shown = false, pastHero = false, talkTimer = null, walkTimer = null, roamTimer = null;
     var said = {};
     var wide = window.matchMedia('(min-width: 900px)');
 
     function label() { charBtn.setAttribute('aria-label', 'Say hi to ' + CHARS[buddy].name); }
-    img.src = src(buddy); label();
+    img.set(buddy); label();
 
     function say(line) {
       if (!shown) return;
@@ -171,9 +236,9 @@
       el.style.setProperty('--walk', (reduce ? 0 : ms) + 'ms');
       el.style.setProperty('--x', x);
       if (reduce) return;
-      el.classList.add('is-walking');
+      el.classList.add('is-walking'); img.to('walk');
       clearTimeout(walkTimer);
-      walkTimer = setTimeout(function () { el.classList.remove('is-walking'); }, ms);
+      walkTimer = setTimeout(function () { el.classList.remove('is-walking'); img.to('idle'); }, ms);
     }
     function roam() {
       clearTimeout(roamTimer);
@@ -204,7 +269,7 @@
     }
 
     el.style.setProperty('--x', 'calc(100% + 40px)');
-    charBtn.addEventListener('click', function () { play(charBtn, 'is-hop'); say(pick(CHARS[buddy].lines)); });
+    charBtn.addEventListener('click', function () { img.to('wave'); say(pick(CHARS[buddy].lines)); });
     close.addEventListener('click', function () {
       put('wc-guide', 'off');
       say('Okay, bye for now! Pick me again any time.');
@@ -212,7 +277,7 @@
     });
 
     listeners.push(function (id) {
-      swapImg(img, id); label();
+      swapImg(img, id, el.classList.contains('is-walking') ? 'walk' : null); label();
       if (shown) say(hello(id));
     });
 

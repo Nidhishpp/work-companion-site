@@ -1,13 +1,6 @@
 /* Work Companion site. Progressive enhancement only: every page works without this file. */
 
-/* Download links. Set a URL to turn a "Coming soon" button into a real download. */
-var DOWNLOADS = {
-  windowsStore: null, // Microsoft Store listing URL
-  windows: null,      // .exe / .msi installer
-  mac: null,          // .dmg (universal)
-  linux: null         // release page with .AppImage / .deb / .tar.gz
-};
-var EARLY_ACCESS = 'mailto:support@chaistack.in?subject=Work%20Companion%20early%20access';
+/* Download links live in download.html, written from the latest release by tools/update-downloads.mjs. */
 
 (function () {
   'use strict';
@@ -95,20 +88,8 @@ var EARLY_ACCESS = 'mailto:support@chaistack.in?subject=Work%20Companion%20early
       }
     }
 
-    /* Downloads */
+    /* Downloads: highlight the visitor's platform */
     var os = detectOS();
-    document.querySelectorAll('[data-download]').forEach(function (a) {
-      var key = a.getAttribute('data-download');
-      var url = DOWNLOADS[key];
-      if (url) {
-        a.href = url;
-        a.classList.remove('btn-soon'); a.classList.add('btn-primary');
-        var label = a.getAttribute('data-label');
-        if (label) a.textContent = label;
-      } else {
-        a.href = EARLY_ACCESS;
-      }
-    });
     if (os) {
       document.querySelectorAll('.platform[data-os="' + os + '"]').forEach(function (c) { c.classList.add('is-yours'); });
       var names = { windows: 'Windows', mac: 'macOS', linux: 'Linux' };

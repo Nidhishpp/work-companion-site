@@ -28,7 +28,7 @@
   </div>
 </header>
 <main id="main" class="legal">
-  <header class="legal-head"><p class="eyebrow">Legal</p><h1>Open-source licences</h1><p class="meta">Last updated: 27 November 2026</p></header>
+  <header class="legal-head"><p class="eyebrow">Legal</p><h1>Open-source licences</h1><p class="meta">Last updated: 28 November 2026</p></header>
   <nav class="toc" aria-label="On this page"><ol>
     <li><a href="#work-companion">Work Companion licence</a></li>
     <li><a href="#third-party">Third-party components</a></li>
@@ -38,7 +38,6 @@
     <section id="work-companion">
       <h2>Work Companion licence</h2>
       <p>Work Companion is free software under the MIT licence.</p>
-      <!-- REVIEW: confirm the copyright line matches the LICENSE file in the repository (year and holder). -->
       <div class="licence-text">
         <p>MIT License</p>
         <p>Copyright (c) 2026 ChaiStack</p>
@@ -50,7 +49,7 @@
 
     <section id="third-party">
       <h2>Third-party components</h2>
-      <p>The main open-source components Work Companion is built with. Each has its own copyright holders; see each project’s repository for the full licence text. Their own dependencies carry their own licences.</p>
+      <p>The main open-source components Work Companion is built with. Each has its own copyright holders.</p>
       <div class="table-wrap"><table>
         <thead><tr><th scope="col">Component</th><th scope="col">Used in</th><th scope="col">Licence</th></tr></thead>
         <tbody>
@@ -58,7 +57,7 @@
           <tr><td><a href="https://github.com/pixiv/three-vrm">@pixiv/three-vrm</a></td><td>Both builds</td><td>MIT</td></tr>
           <tr><td><a href="https://github.com/electron/electron">Electron</a></td><td>Linux</td><td>MIT</td></tr>
           <tr><td><a href="https://github.com/tauri-apps/tauri">Tauri</a> and its plugins (single-instance, global-shortcut, autostart, dialog, opener, notification)</td><td>Windows, macOS</td><td>MIT or Apache-2.0</td></tr>
-          <tr><td><a href="https://github.com/tauri-apps/tao">tao</a> (with a small local patch)</td><td>Windows, macOS</td><td>MIT or Apache-2.0</td></tr>
+          <tr><td><a href="https://github.com/tauri-apps/tao">tao</a> (with a small local patch)</td><td>Windows, macOS</td><td>Apache-2.0</td></tr>
           <tr><td><a href="https://github.com/serde-rs/serde">serde</a>, <a href="https://github.com/serde-rs/json">serde_json</a></td><td>Windows, macOS</td><td>MIT or Apache-2.0</td></tr>
           <tr><td><a href="https://github.com/tokio-rs/tokio">tokio</a></td><td>Windows, macOS</td><td>MIT</td></tr>
           <tr><td><a href="https://github.com/seanmonstar/reqwest">reqwest</a></td><td>Windows, macOS</td><td>MIT or Apache-2.0</td></tr>
@@ -74,7 +73,8 @@
         </tbody>
       </table></div>
       <p>Build tools that are not shipped in the app, such as the Tauri CLI and electron-builder, are also open source (MIT or Apache-2.0).</p>
-      <!-- REVIEW: licences taken from well-known project metadata, not from a generated licence report; consider generating a full list (e.g. cargo-about, license-checker) for the installers. -->
+      <h3 id="full-list">Full list</h3>
+      <p>Every installer includes <code>THIRD_PARTY_NOTICES.md</code> next to the app. It lists every bundled component, about 350 in the Windows and macOS app and 15 in the Linux app, with its version, its licence and the full licence texts. It is generated from the app’s dependency lists for each release. Almost all components are under MIT, Apache-2.0 or both; a few use BSD, ISC, Zlib, Unicode-3.0, MPL-2.0, Unlicense, BSL-1.0, CC0-1.0 or CDLA-Permissive-2.0. The Linux app also ships Electron’s and Chromium’s own licence files.</p>
     </section>
 
     <section id="trademarks">

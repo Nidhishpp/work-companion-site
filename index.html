@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work Companion: a private desktop companion for your workday</title>
-<meta name="description" content="Work Companion by ChaiStack is a free, private desktop app for Windows, macOS and Linux. A small 3D character brings your reminders, meeting alerts, focus timer and work log. No servers, no accounts, no tracking.">
+<title>Work Companion: a tiny friend for your workday</title>
+<meta name="description" content="A cute character on your screen that reminds you to drink water, take breaks, join meetings and stop on time. Free for Windows, Mac and Linux. No sign-up, no tracking.">
 <link rel="canonical" href="https://workcompanion.chaistack.in/">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -12,18 +12,19 @@
 <meta name="theme-color" content="#1b1511" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Work Companion">
-<meta property="og:title" content="Work Companion: a private desktop companion for your workday">
-<meta property="og:description" content="Work Companion by ChaiStack is a free, private desktop app for Windows, macOS and Linux. A small 3D character brings your reminders, meeting alerts, focus timer and work log. No servers, no accounts, no tracking.">
+<meta property="og:title" content="Work Companion: a tiny friend for your workday">
+<meta property="og:description" content="A cute character on your screen that reminds you to drink water, take breaks, join meetings and stop on time. Free for Windows, Mac and Linux. No sign-up, no tracking.">
 <meta property="og:url" content="https://workcompanion.chaistack.in/">
 <meta property="og:image" content="https://workcompanion.chaistack.in/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Work Companion: a small character on your desktop with a reminder bubble.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Work Companion: a private desktop companion for your workday">
-<meta name="twitter:description" content="Work Companion by ChaiStack is a free, private desktop app for Windows, macOS and Linux. A small 3D character brings your reminders, meeting alerts, focus timer and work log. No servers, no accounts, no tracking.">
+<meta name="twitter:title" content="Work Companion: a tiny friend for your workday">
+<meta name="twitter:description" content="A cute character on your screen that reminds you to drink water, take breaks, join meetings and stop on time. Free for Windows, Mac and Linux. No sign-up, no tracking.">
 <meta name="twitter:image" content="https://workcompanion.chaistack.in/assets/img/og.png">
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/buddies.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -33,6 +34,7 @@
     <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
+        <li><a href="./#characters">Characters</a></li>
         <li><a href="./#features">Features</a></li>
         <li><a href="./#privacy">Privacy</a></li>
         <li><a href="download.html">Download</a></li>
@@ -43,209 +45,136 @@
   </div>
 </header>
 <main id="main">
-<section class="hero">
+<section class="hero" data-hero>
   <div class="container">
     <div>
-      <p class="byline">by ChaiStack · Free for Windows, macOS and Linux</p>
-      <h1><span class="accent">Work Companion</span>, a small friend for a long workday.</h1>
-      <p class="lead">A private desktop companion for remote developers and team leads. A little 3D character lives in the corner of your screen and brings every reminder: when to start and stop, meetings, water, stretches and focus time. Your work log stays in plain files on your computer.</p>
+      <p class="byline">Free · Windows, Mac and Linux · No sign-up</p>
+      <h1><span class="accent">A tiny friend</span> for your workday.</h1>
+      <p class="lead">Work Companion puts a cute character on your screen. It reminds you to drink water, take breaks, join meetings and stop on time, so you don’t have to.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="download.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download for free</a>
-        <a class="btn btn-ghost" href="#privacy">How privacy works</a>
+        <a class="btn btn-ghost" href="#characters">Meet the characters</a>
       </div>
-      <ul class="badges" aria-label="Highlights">
-        <li>No account needed</li><li>No telemetry</li><li>MIT licensed</li><li>Version 0.1.4</li>
-      </ul>
     </div>
-    <div class="hero-art"><svg viewBox="0 0 640 480" data-animate role="img" aria-labelledby="hero-t">
-  <title id="hero-t">A laptop screen with code, and a small chai-cup character in the corner saying: Time for water, and Standup in 5 minutes, Join.</title>
-  <rect x="40" y="30" width="560" height="360" rx="22" fill="#2b1e16"/>
-  <rect x="56" y="46" width="528" height="328" rx="12" fill="#f4ebdd"/>
-  <rect x="56" y="46" width="528" height="30" rx="12" fill="#e5d6c3"/><rect x="56" y="62" width="528" height="14" fill="#e5d6c3"/>
-  <circle cx="76" cy="61" r="5" fill="#a8471f"/><circle cx="94" cy="61" r="5" fill="#c98b52"/><circle cx="112" cy="61" r="5" fill="#3f6b4a"/>
-  <rect x="76" y="96" width="120" height="250" rx="8" fill="#efe1cc"/>
-  <g fill="#cdb79c"><rect x="88" y="112" width="80" height="8" rx="4"/><rect x="88" y="132" width="64" height="8" rx="4"/><rect x="88" y="152" width="90" height="8" rx="4"/><rect x="88" y="172" width="56" height="8" rx="4"/></g>
-  <g><rect x="216" y="104" width="160" height="9" rx="4.5" fill="#a8471f" opacity=".7"/><rect x="216" y="126" width="240" height="9" rx="4.5" fill="#5f4c3e" opacity=".35"/><rect x="236" y="148" width="190" height="9" rx="4.5" fill="#3f6b4a" opacity=".55"/><rect x="236" y="170" width="120" height="9" rx="4.5" fill="#5f4c3e" opacity=".35"/><rect x="216" y="192" width="210" height="9" rx="4.5" fill="#c98b52" opacity=".7"/><rect x="236" y="214" width="150" height="9" rx="4.5" fill="#5f4c3e" opacity=".35"/></g>
-  <path d="M0 392h640v14a14 14 0 0 1-14 14H14A14 14 0 0 1 0 406z" fill="#57473b"/>
-  <g class="pop d1">
-    <rect x="300" y="236" width="196" height="46" rx="16" fill="#ffffff" stroke="#cdb79c" stroke-width="2"/>
-    <text x="318" y="265" font-family="system-ui,Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#2b1e16">Time for water 💧</text>
-  </g>
-  <g class="pop d2">
-    <rect x="252" y="292" width="244" height="58" rx="16" fill="#ffffff" stroke="#a8471f" stroke-width="2"/>
-    <text x="270" y="326" font-family="system-ui,Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#2b1e16">Standup in 5 min</text>
-    <rect x="418" y="306" width="62" height="30" rx="15" fill="#a8471f"/>
-    <text x="449" y="326" text-anchor="middle" font-family="system-ui,Segoe UI,sans-serif" font-size="14" font-weight="800" fill="#ffffff">Join</text>
-  </g>
-  <g transform="translate(500 246)"><g class="bob ">
-  <ellipse cx="60" cy="112" rx="30" ry="5" fill="#000" opacity=".12"/>
-  <path d="M86 50h7a15 15 0 0 1 0 30h-7" fill="none" stroke="#7a4a2a" stroke-width="8"/>
-  <rect x="26" y="36" width="62" height="72" rx="16" fill="#a8471f"/>
-  <ellipse cx="57" cy="38" rx="31" ry="7" fill="#c98b52"/>
-  <g class="blink"><circle cx="46" cy="68" r="4.5" fill="#fbf6ee"/><circle cx="68" cy="68" r="4.5" fill="#fbf6ee"/></g>
-  <path d="M50 79q7 6 14 0" fill="none" stroke="#fbf6ee" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="39" cy="79" r="4" fill="#f0a26b" opacity=".7"/><circle cx="75" cy="79" r="4" fill="#f0a26b" opacity=".7"/>
-  <path class="steam" d="M48 28q-6-8 0-16" fill="none" stroke="#c9b7a4" stroke-width="3" stroke-linecap="round"/>
-  <path class="steam s2" d="M64 26q-6-8 0-16" fill="none" stroke="#c9b7a4" stroke-width="3" stroke-linecap="round"/>
-</g></g>
-</svg></div>
+    <div class="stage" data-stage>
+      <p class="visually-hidden">Picture of a computer screen through a workday. A small character in the corner says good morning at 9:00, warns about standup at 9:55 with a Join button, suggests water at 11:30 and a stretch at 15:00, and says it is time to log off at 18:00.</p>
+      <div class="screen">
+        <div class="screen-inner">
+          <div class="screen-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="clock" data-clock>9:00</span></div>
+          <div class="win w1" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+          <div class="win w2" aria-hidden="true"><b></b><b></b><b></b></div>
+          <p class="stage-bubble" data-stage-bubble aria-hidden="true"><span data-stage-text>Good morning! Ready when you are ☀️</span> <span class="join" data-stage-join hidden>Join</span></p>
+          <button class="stage-char" type="button" data-stage-char aria-label="Meet the next character"><span class="sprite" data-sprite><img src="assets/img/chars/mug.webp" alt="" width="256" height="256"></span></button>
+        </div>
+      </div>
+      <div class="stage-controls"><span class="hint">Tap the character to meet the others</span><button class="stage-pause" type="button" data-stage-pause>Pause</button></div>
+    </div>
   </div>
 </section>
 
-<section class="section section-alt" id="features" aria-labelledby="features-h">
+<section class="section section-alt" id="characters" aria-labelledby="chars-h">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Features</p>
-      <h2 id="features-h">Everything your workday needs, nothing it doesn’t</h2>
-      <p class="lead">Reminders that respect your focus, a log you own, and AI only if you want it.</p>
+      <p class="eyebrow">Meet the gang</p>
+      <h2 id="chars-h">Ten little friends. Pick yours.</h2>
+      <p class="lead">Each one has its own moves. Tap a character to say hi.</p>
     </div>
-    <div class="grid grid-3">
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="7" width="12" height="11" rx="4"/><circle cx="10" cy="12" r=".8"/><circle cx="14" cy="12" r=".8"/><path d="M12 7V4M9 21h6"/></svg></span><h3>A character on your desktop</h3><p>It walks in for each notification or stays on screen. Pick one of 10 original built-in characters, or load your own .glb or .vrm model.</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><h3>Start and end of day</h3><p>Alerts when your workday begins and ends, with gentle escalation at +30 and +60 minutes if you keep working after hours.</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M9 15l2 2 4-4"/></svg></span><h3>Meeting alerts with Join</h3><p>Optional, read-only Google Calendar. Get an alert before each meeting with a Join button, and a prompt to note any outcome when it ends.</p></article>
-      <article class="card reveal"><span class="f-icon leaf" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><h3>Water and stretch breaks</h3><p>Friendly nudges to drink water and move. They never interrupt a meeting or a focus block.</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13V9.5M10 3h4"/></svg></span><h3>Pomodoro focus timer</h3><p>Start a focus block and low-priority nudges wait until you are done.</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h3"/></svg></span><h3>A work log in plain markdown</h3><p>One file per day, with full-text search. Quick capture from anywhere with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd> on macOS).</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><h3>Optional AI, your provider</h3><p>Draft your standup, ask questions about your log, or summarize a date range, using the provider and key you choose.</p></article>
-      <article class="card reveal"><span class="f-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><h3>Custom reminders</h3><p>Your own work reminders: once, daily, or every N minutes. One bubble at a time, and meeting alerts still come through in Do Not Disturb.</p></article>
-      <article class="card reveal"><span class="f-icon leaf" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Private by design</h3><p>No servers, no accounts, no analytics. Secrets are kept in your operating system’s keychain.</p></article>
+    <div class="gang reveal" data-gang>
+      <div class="gang-stage">
+        <p class="gang-say" data-gang-say aria-live="polite">Hi, I’m Mugsy! I’ll show you around.</p>
+        <div class="gang-pic"><span class="sprite" data-sprite><img data-gang-img src="assets/img/chars/mug.webp" alt="" width="256" height="256"></span></div>
+        <h3 data-gang-name>Mugsy</h3>
+        <p class="muted" data-gang-blurb>Sips, stirs and puffs a little steam.</p>
+      </div>
+      <ul class="gang-list" aria-label="Characters">
+        <li><button type="button" data-char="mug" aria-pressed="true"><img src="assets/img/chars/mug.webp" alt="" width="256" height="256">Mugsy</button></li>
+        <li><button type="button" data-char="robot" aria-pressed="false"><img src="assets/img/chars/robot.webp" alt="" width="256" height="256">Bloop</button></li>
+        <li><button type="button" data-char="cat" aria-pressed="false"><img src="assets/img/chars/cat.webp" alt="" width="256" height="256">Whiskers</button></li>
+        <li><button type="button" data-char="blob" aria-pressed="false"><img src="assets/img/chars/blob.webp" alt="" width="256" height="256">Mochi</button></li>
+        <li><button type="button" data-char="ghost" aria-pressed="false"><img src="assets/img/chars/ghost.webp" alt="" width="256" height="256">Boo</button></li>
+        <li><button type="button" data-char="spidey" aria-pressed="false"><img src="assets/img/chars/spidey.webp" alt="" width="256" height="256">Spidey</button></li>
+        <li><button type="button" data-char="owl" aria-pressed="false"><img src="assets/img/chars/owl.webp" alt="" width="256" height="256">Hoot</button></li>
+        <li><button type="button" data-char="plant" aria-pressed="false"><img src="assets/img/chars/plant.webp" alt="" width="256" height="256">Sprig</button></li>
+        <li><button type="button" data-char="dragon" aria-pressed="false"><img src="assets/img/chars/dragon.webp" alt="" width="256" height="256">Ember</button></li>
+        <li><button type="button" data-char="aviator" aria-pressed="false"><img src="assets/img/chars/aviator.webp" alt="" width="256" height="256">Pip</button></li>
+      </ul>
     </div>
+    <p class="muted gang-note">In the app they’re animated 3D characters that walk, nap and play. Got your own 3D model? You can use that too.</p>
   </div>
 </section>
 
-<section class="section" aria-labelledby="how-h">
+<section class="section" id="features" aria-labelledby="features-h" data-guide-line="Here’s what I do for you all day.">
   <div class="container">
-    <div class="section-head center reveal">
-      <p class="eyebrow">How it works</p>
-      <h2 id="how-h">Up and running in three steps</h2>
+    <div class="section-head reveal">
+      <p class="eyebrow">What it does</p>
+      <h2 id="features-h">Your buddy looks after the little things</h2>
     </div>
-    <ol class="steps">
-      <li class="reveal"><h3>Install</h3><p>Download the installer for Windows, macOS or Linux. There is no account to create.</p></li>
-      <li class="reveal"><h3>Set your day</h3><p>Choose your work hours, a character and which reminders you want. Connect Google Calendar only if you like.</p></li>
-      <li class="reveal"><h3>Get on with work</h3><p>Your companion brings reminders one at a time and keeps quiet while you focus. Jot notes into your log as you go.</p></li>
-    </ol>
+    <div class="scenes">
+      <article class="scene reveal"><p class="say" aria-hidden="true">Time for some water 💧</p><h3>Reminds you to take breaks</h3><p>Water, a stretch, a breath of fresh air. Gentle nudges through the day.</p></article>
+      <article class="scene reveal"><p class="say" aria-hidden="true">Standup in 5 min <span class="join">Join</span></p><h3>Gets you to meetings on time</h3><p>A heads-up before each meeting, with a button to join. Works with Google Calendar.</p></article>
+      <article class="scene reveal"><p class="say" aria-hidden="true">Focus time. I’ll keep quiet 🤫</p><h3>Stays quiet while you focus</h3><p>Start a focus timer and everything else waits until you’re done.</p></article>
+      <article class="scene reveal"><p class="say" aria-hidden="true">Noted! ✍️</p><h3>Remembers what you did</h3><p>Jot a quick note from anywhere with one shortcut. Handy for your next standup.</p></article>
+      <article class="scene reveal"><p class="say" aria-hidden="true">Nice work today. Log off 🌙</p><h3>Tells you when to stop</h3><p>A nudge when your workday ends, so work doesn’t eat your evening.</p></article>
+      <article class="scene reveal"><p class="say" aria-hidden="true">Here’s your standup ✨</p><h3>Writes your update, if you like</h3><p>Turn on AI and it can sum up your notes for you. It stays off until you switch it on.</p></article>
+    </div>
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="queue-h">
+<section class="section section-alt" aria-labelledby="queue-h" data-guide-line="I never pile up pop-ups. One thing at a time.">
   <div class="container queue-demo">
     <div class="reveal">
-      <p class="eyebrow">One bubble at a time</p>
-      <h2 id="queue-h">Reminders wait their turn</h2>
-      <p class="lead">Every notification joins a single queue with a priority. Your companion shows the most important one first, then the next, so you are never buried in pop-ups.</p>
-      <p class="muted">Meeting alerts are urgent and come through even in Do Not Disturb. Water and stretch breaks wait until a meeting or focus block is over.</p>
+      <p class="eyebrow">One at a time</p>
+      <h2 id="queue-h">No pile of pop-ups</h2>
+      <p class="lead">When a few things come up at once, your buddy shows the most important one first. Meetings jump the line. A water break can wait.</p>
     </div>
     <div class="qd-stage reveal" data-queue-demo>
-      <ul class="qd-list" aria-label="Queued reminders, highest priority first">
+      <ul class="qd-list" aria-label="Waiting messages, most important first">
         <li class="is-active" data-tag="Urgent" data-msg="Standup in 5 min. Join?"><span class="prio">Urgent</span>Standup</li>
-        <li data-tag="High" data-msg="Any outcome worth noting?"><span class="prio">High</span>Meeting note</li>
+        <li data-tag="High" data-msg="How did the meeting go?"><span class="prio">High</span>Meeting note</li>
         <li data-tag="Normal" data-msg="Time for water 💧"><span class="prio">Normal</span>Water</li>
         <li data-tag="Low" data-msg="Stand up and stretch"><span class="prio">Low</span>Stretch</li>
       </ul>
       <div class="qd-scene">
         <div class="qd-bubble" aria-live="off"><span class="tag">Urgent</span><span class="msg">Standup in 5 min. Join?</span></div>
-        <svg class="qd-char" viewBox="0 0 120 120" data-animate aria-hidden="true"><g class="bob ">
-  <ellipse cx="60" cy="112" rx="30" ry="5" fill="#000" opacity=".12"/>
-  <path d="M86 50h7a15 15 0 0 1 0 30h-7" fill="none" stroke="#7a4a2a" stroke-width="8"/>
-  <rect x="26" y="36" width="62" height="72" rx="16" fill="#a8471f"/>
-  <ellipse cx="57" cy="38" rx="31" ry="7" fill="#c98b52"/>
-  <g class="blink"><circle cx="46" cy="68" r="4.5" fill="#fbf6ee"/><circle cx="68" cy="68" r="4.5" fill="#fbf6ee"/></g>
-  <path d="M50 79q7 6 14 0" fill="none" stroke="#fbf6ee" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="39" cy="79" r="4" fill="#f0a26b" opacity=".7"/><circle cx="75" cy="79" r="4" fill="#f0a26b" opacity=".7"/>
-  <path class="steam" d="M48 28q-6-8 0-16" fill="none" stroke="#c9b7a4" stroke-width="3" stroke-linecap="round"/>
-  <path class="steam s2" d="M64 26q-6-8 0-16" fill="none" stroke="#c9b7a4" stroke-width="3" stroke-linecap="round"/>
-</g></svg>
+        <span class="sprite qd-char" data-sprite><img data-buddy-img src="assets/img/chars/mug.webp" alt="" width="256" height="256"></span>
       </div>
-      <p class="qd-note">Illustration of the queue. In the app, each bubble waits for you to respond or dismiss it.</p>
+      <p class="qd-note">Just a demo. In the app, each message waits until you’ve seen it.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="privacy" aria-labelledby="privacy-h">
+<section class="section" id="privacy" aria-labelledby="privacy-h" data-guide-line="Your stuff stays with you. Promise!">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Private by design</p>
-      <h2 id="privacy-h">Your workday stays on your computer</h2>
-      <p class="lead">Work Companion has no servers and no accounts. ChaiStack never receives your data.</p>
+      <p class="eyebrow">Private</p>
+      <h2 id="privacy-h">Your stuff stays on your computer</h2>
+      <p class="lead">No sign-up, no ads, no tracking. We don’t even have servers to send your data to.</p>
     </div>
     <div class="privacy-panel">
-      <div class="reveal">
-        <ul class="checklist">
-          <li><span>No accounts, no analytics, no telemetry and no ads.</span></li>
-          <li><span>Your work log is plain markdown files in a folder you choose.</span></li>
-          <li><span>API keys and sign-in tokens are stored in your operating system’s keychain.</span></li>
-          <li><span>Nothing leaves your computer except calls to Google Calendar (if you connect it) and to the AI provider you choose (if you turn AI on).</span></li>
-          <li><span>With Ollama, AI runs fully on your own machine, offline.</span></li>
-        </ul>
-      </div>
+      <ul class="checklist reveal">
+        <li><span>Your notes are saved on your computer. Open them in any text editor.</span></li>
+        <li><span>AI is off unless you turn it on. Then it talks only to the AI service you pick.</span></li>
+        <li><span>It’s free and open source, so anyone can check how it works.</span></li>
+      </ul>
       <div class="google-box reveal" id="google-calendar">
-        <h3>Google sign-in is optional</h3>
-        <p>You can use Work Companion without a Google account. If you choose to connect Google Calendar, Work Companion requests <strong>read-only access to your calendar</strong> (the <code>calendar.readonly</code> scope) and uses it only to:</p>
-        <ul>
-          <li>show today’s events,</li>
-          <li>alert you before a meeting starts, with a Join button, and</li>
-          <li>ask for a short note when a meeting ends.</li>
-        </ul>
-        <p><strong>Work Companion never creates, changes or deletes anything in your calendar.</strong> Event data is read directly from Google to your computer and is not sent to ChaiStack. You can disconnect at any time in the app’s settings or from your Google Account permissions.</p>
-        <div class="link-row">
-          <a class="btn btn-ghost" href="privacy.html">Read the Privacy policy</a>
-          <a class="btn btn-ghost" href="terms.html">Read the Terms of service</a>
-        </div>
+        <h3>Using Google Calendar? Here’s the deal.</h3>
+        <p>Connecting your calendar is optional. If you do, Work Companion only <strong>reads</strong> your calendar so it can show your day and remind you about meetings. It can’t add, change or delete anything, and your meetings never come to us. You can disconnect any time.</p>
+        <p class="link-row"><a href="privacy.html#google-calendar">How we handle Google data</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="ai-h">
+<section class="section section-alt" aria-labelledby="faq-h" data-guide-line="Got questions? I’ve got answers.">
   <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Optional AI</p>
-      <h2 id="ai-h">Bring your own AI provider</h2>
-      <p class="lead">AI is off until you turn it on. Use it to draft a standup, ask your log a question, or summarize a range of days. Requests go straight from your computer to the provider you pick.</p>
-    </div>
-    <ul class="chips reveal" aria-label="Supported AI providers">
-      <li>Anthropic</li>
-      <li>OpenAI-compatible <span>(OpenRouter, Groq, LM Studio and more)</span></li>
-      <li>Google Gemini</li>
-      <li>Ollama <span>(fully local, offline)</span></li>
-      <li>Sign in with ChatGPT</li>
-    </ul>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="chars-h">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Pick your companion</p>
-      <h2 id="chars-h">Ten original characters, or your own</h2>
-      <p class="lead">Every built-in character has its own little quirks. Prefer something else? Load any .glb or .vrm model you have the rights to use.</p>
-    </div>
-    <ul class="char-strip reveal">
-      <li><img src="assets/img/chars/robot.svg" alt="" width="120" height="120" loading="lazy">Robot</li>
-      <li><img src="assets/img/chars/cat.svg" alt="" width="120" height="120" loading="lazy">Cat</li>
-      <li><img src="assets/img/chars/owl.svg" alt="" width="120" height="120" loading="lazy">Owl</li>
-      <li><img src="assets/img/chars/mug.svg" alt="" width="120" height="120" loading="lazy">Mug</li>
-      <li><img src="assets/img/chars/plant.svg" alt="" width="120" height="120" loading="lazy">Plant</li>
-      <li><img src="assets/img/chars/dragon.svg" alt="" width="120" height="120" loading="lazy">Dragon</li>
-      <li><img src="assets/img/chars/ghost.svg" alt="" width="120" height="120" loading="lazy">Ghost</li>
-      <li><img src="assets/img/chars/aviator.svg" alt="" width="120" height="120" loading="lazy">Aviator</li>
-      <li class="own"><strong>+ Blob, Spider</strong>and your own .glb / .vrm</li>
-    </ul>
-    <p class="muted" style="margin-top:1rem">Illustrations are flat drawings; in the app the characters are animated 3D models.</p>
-  </div>
-</section>
-
-<section class="section section-alt" aria-labelledby="faq-h">
-  <div class="container">
-    <div class="section-head center reveal"><p class="eyebrow">FAQ</p><h2 id="faq-h">Questions, answered</h2></div>
+    <div class="section-head center reveal"><p class="eyebrow">Questions</p><h2 id="faq-h">Good to know</h2></div>
     <div class="faq">
-      <details><summary>Is Work Companion really free?</summary><p>Yes. It is free and open-source software under the MIT License. There are no paid tiers, ads or tracking. If you turn on AI, your provider may charge you for its usage under its own terms.</p></details>
-      <details><summary>Do I need an account?</summary><p>No. There is no Work Companion account. Google sign-in is only needed if you want calendar alerts, and AI sign-in only if you choose a provider that needs it.</p></details>
-      <details><summary>What does it do with my Google Calendar?</summary><p>With your permission it reads your calendar (read-only) to show today’s events, alert you before meetings and ask for a note when they end. It never changes your calendar. See the <a href="privacy.html">Privacy policy</a>.</p></details>
-      <details><summary>Where is my work log stored?</summary><p>On your computer, as one markdown file per day. You can open, edit, back up or delete the files with any text editor.</p></details>
-      <details><summary>Will it interrupt my meetings?</summary><p>No. Water and stretch reminders never interrupt a meeting or a focus block, and only one bubble shows at a time.</p></details>
-      <details><summary>Which systems does it run on?</summary><p>Windows 10 and 11 (x64), macOS (universal, Apple silicon and Intel) and Linux x64 (AppImage, .deb or .tar.gz). See <a href="download.html">Download</a>.</p></details>
-      <details><summary>Will it drain my battery?</summary><p>The character’s animation slows to a low frame rate when idle and stops completely when it is hidden.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. No paid plans and no ads. If you choose to use AI, that AI service may charge you, but that’s between you and them.</p></details>
+      <details><summary>Do I need an account?</summary><p>No. Download it and you’re ready.</p></details>
+      <details><summary>Will it pop up during my meetings?</summary><p>No. Breaks wait until your meeting or focus time is over, and only one message shows at a time.</p></details>
+      <details><summary>Will it slow down my computer?</summary><p>No. When nothing is happening your buddy barely moves, and it stops completely when hidden.</p></details>
+      <details><summary>Which computers does it work on?</summary><p>Windows 10 and 11, Mac (Apple chip and Intel) and Linux. See <a href="download.html">Download</a>.</p></details>
+      <details><summary>Can I use my own character?</summary><p>Yes. If you have a 3D model (a .glb or .vrm file) that you’re allowed to use, you can load it in the settings.</p></details>
     </div>
   </div>
 </section>
@@ -253,7 +182,8 @@
 <section class="section">
   <div class="container">
     <div class="cta reveal">
-      <div><h2>Make room for a small companion</h2><p>Free for Windows, macOS and Linux. No account, no tracking.</p></div>
+      <div><h2>Ready to meet your buddy?</h2><p>Free for Windows, Mac and Linux. No sign-up.</p></div>
+      <ul class="parade" aria-hidden="true"><li><img src="assets/img/chars/robot.webp" alt="" width="256" height="256"></li><li><img src="assets/img/chars/cat.webp" alt="" width="256" height="256"></li><li><img src="assets/img/chars/blob.webp" alt="" width="256" height="256"></li><li><img src="assets/img/chars/owl.webp" alt="" width="256" height="256"></li><li><img src="assets/img/chars/dragon.webp" alt="" width="256" height="256"></li></ul>
       <div class="btn-row"><a class="btn btn-primary" href="download.html">Get Work Companion</a><a class="btn btn-ghost" href="support.html">Get help</a></div>
     </div>
   </div>
@@ -269,6 +199,7 @@
       <div>
         <h2>Product</h2>
         <ul>
+          <li><a href="./#characters">Characters</a></li>
           <li><a href="./#features">Features</a></li>
           <li><a href="download.html">Download</a></li>
           <li><a href="support.html">Support</a></li>
